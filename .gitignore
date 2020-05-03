@@ -134,3 +134,6 @@ dmypy.json
 
 # Secret Files
 secrets/
+
+# Temporary log files
+log**
