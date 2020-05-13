@@ -1,0 +1,75 @@
+{'objectId': 'p', 'pageElements': [
+        {'objectId': 'i0', 'size': {'width': {'magnitude': 3000000, 'unit': 'EMU'
+                }, 'height': {'magnitude': 3000000, 'unit': 'EMU'
+                }
+            }, 'transform': {'scaleX': 2.8402, 'scaleY': 0.6842, 'translateX': 311708.35000000003, 'translateY': 744575, 'unit': 'EMU'
+            }, 'shape': {'shapeType': 'TEXT_BOX', 'text': {'textElements': [
+                        {'endIndex': 15, 'paragraphMarker': {'style': {'direction': 'LEFT_TO_RIGHT'
+                                }
+                            }
+                        },
+                        {'endIndex': 15, 'textRun': {'content': 'This is a test\n', 'style': {}
+                            }
+                        }
+                    ]
+                }, 'shapeProperties': {'shapeBackgroundFill': {'propertyState': 'INHERIT'
+                    }, 'outline': {'propertyState': 'INHERIT'
+                    }, 'shadow': {'propertyState': 'INHERIT'
+                    }
+                }, 'placeholder': {'type': 'CENTERED_TITLE', 'parentObjectId': 'p2_i0'
+                }
+            }
+        },
+        {'objectId': 'i1', 'size': {'width': {'magnitude': 3000000, 'unit': 'EMU'
+                }, 'height': {'magnitude': 3000000, 'unit': 'EMU'
+                }
+            }, 'transform': {'scaleX': 2.8402, 'scaleY': 0.2642, 'translateX': 311700, 'translateY': 2834125, 'unit': 'EMU'
+            }, 'shape': {'shapeType': 'TEXT_BOX', 'text': {'textElements': [
+                        {'endIndex': 20, 'paragraphMarker': {'style': {'direction': 'LEFT_TO_RIGHT'
+                                }
+                            }
+                        },
+                        {'endIndex': 20, 'textRun': {'content': 'asdfsadfsadfsadadfa\n', 'style': {}
+                            }
+                        }
+                    ]
+                }, 'shapeProperties': {'shapeBackgroundFill': {'propertyState': 'INHERIT'
+                    }, 'outline': {'propertyState': 'INHERIT'
+                    }, 'shadow': {'propertyState': 'INHERIT'
+                    }
+                }, 'placeholder': {'type': 'SUBTITLE', 'parentObjectId': 'p2_i1'
+                }
+            }
+        }
+    ], 'slideProperties': {'layoutObjectId': 'p2', 'masterObjectId': 'simple-light-2', 'notesPage': {'objectId': 'p:notes', 'pageType': 'NOTES', 'pageElements': [
+                {'objectId': 'i2', 'size': {'width': {'magnitude': 3000000, 'unit': 'EMU'
+                        }, 'height': {'magnitude': 3000000, 'unit': 'EMU'
+                        }
+                    }, 'transform': {'scaleX': 2.032025, 'scaleY': 1.143, 'translateX': 381300, 'translateY': 685800, 'unit': 'EMU'
+                    }, 'shape': {'shapeProperties': {'outline': {'propertyState': 'INHERIT'
+                            }
+                        }, 'placeholder': {'type': 'SLIDE_IMAGE', 'parentObjectId': 'n:slide'
+                        }
+                    }
+                },
+                {'objectId': 'i3', 'size': {'width': {'magnitude': 3000000, 'unit': 'EMU'
+                        }, 'height': {'magnitude': 3000000, 'unit': 'EMU'
+                        }
+                    }, 'transform': {'scaleX': 1.8288, 'scaleY': 1.3716, 'translateX': 685800, 'translateY': 4343400, 'unit': 'EMU'
+                    }, 'shape': {'shapeType': 'TEXT_BOX', 'shapeProperties': {'shapeBackgroundFill': {'propertyState': 'INHERIT'
+                            }, 'outline': {'propertyState': 'INHERIT'
+                            }, 'shadow': {'propertyState': 'INHERIT'
+                            }
+                        }, 'placeholder': {'type': 'BODY', 'index': 1, 'parentObjectId': 'n:text'
+                        }
+                    }
+                }
+            ], 'pageProperties': {'pageBackgroundFill': {'propertyState': 'INHERIT'
+                }
+            }, 'notesProperties': {'speakerNotesObjectId': 'i3'
+            }
+        }
+    }, 'pageProperties': {'pageBackgroundFill': {'propertyState': 'INHERIT'
+        }
+    }
+}
