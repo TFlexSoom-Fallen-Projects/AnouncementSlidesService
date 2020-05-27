@@ -47,8 +47,7 @@ def parse_csv(path):
 
     _birthday_object_list.sort(key=attrgetter("month", "day"))
 
-    # Not very optimized to perform the string operation each time... 
-    # I Should store it in the tuple...
+    # Prepare to setup lookup table for list
     month = _birthday_object_list[0].month
 
     # Any months skipped should be at 0 including non-month 0
