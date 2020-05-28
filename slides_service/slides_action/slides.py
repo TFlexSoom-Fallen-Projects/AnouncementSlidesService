@@ -8,11 +8,19 @@
 #   use and a function for the processes in the background. 
 #   (We could populate a global credentials variable here)
 
+# API-Related
 import googleapiclient.discovery as discovery
+import requests
+
+# Other
+import datetime
 
 # The ID of a sample presentation.
-PRESENTATION_ID = '1LZ4ZzKeAMbCVxB0MUiVyI3fddqjBKJaKp_6ZRDF-Rwc'
+PRESENTATION_ID = '15axIfyoPF1zDV4VbcQzceM6DNnvbloHX2lXX07fcaZY'
 
+##### PREPERATION ####
+now = datetime.datetime.now()
+today = now.strftime("%d %B, %Y")
 
 # -------------------------------------------------------------------------------
 ##### ALL THE API CODE MANIPULATION GOES HERE!!! #####
@@ -22,7 +30,9 @@ def on_start(creds, log):
 
     # Call the Slides API
     presentation = service.presentations().get(
-        presentationId=PRESENTATION_ID).execute()
+        presentationId=PRESENTATION_ID)
+
+    presentation = presentation.execute()
 
     # execute()
     slides = presentation.get('slides')
@@ -35,68 +45,60 @@ def on_start(creds, log):
         else:
             print('- Slide #{} contains 0 elements.'.format(i + 1))
     
-    # Other Stuff
-    body = {
-        'title': "This is a title!"
-    }
-    #presentation = service.presentations().create(body=body).execute()
-    
-    print('Created presentation with ID: {0}'.format(
-        presentation.get('presentationId')))
+    # Reads a Presentation and its objects
+
+    r = presentation.get('https://slides.googleapis.com/v1/presentations/{}?fields=slides.objectId'.format(PRESENTATION_ID))
+
+    # Writes the selected slide information to a .json file
+    file = open("sideInfo.json","w") 
+    file.write(str(slides) + ".json")
+    file.close()
+
+# -------------------------------------------------------------------------------
 
     
-    # Grab This presentation:
-    # 1t5uX0SYD4en6GWQDrQubCKo87wd4ht4yv-Mr87CJ5ZI
-    # And give it a fancy new thing
+    # Grab a presnentation
+    # And do stuff with it
 
-    presentation = service.presentations().get(
-        presentationId="1t5uX0SYD4en6GWQDrQubCKo87wd4ht4yv-Mr87CJ5ZI"
-    ).execute()
+# Creates a text box 
 
-    print(presentation.get("slides"))
-    slides = presentation.get("slides")
-    print("\n\n")
-    print(slides[0])
-    print("\n\n\n")
-
-    element_id = "ThisIsARAN4domString"
     pt100 = {
         'magnitude': 100,
         'unit': 'PT'
     }
     req_body = {
         "requests": [
-            {
-                'createShape': {
-                    'objectId': element_id,
-                    'shapeType': 'TEXT_BOX',
-                    'elementProperties': {
-                        'pageObjectId': "p",
-                        'size': {
-                            'height': pt100,
-                            'width': pt100
-                        },
-                        'transform': {
-                            'scaleX': 1,
-                            'scaleY': 1,
-                            'translateX': 200,
-                            'translateY': 200,
-                            'unit': 'PT'
-                        }
-                    }
+            {   # Changes Slide background
+                "updatePageProperties": {
+                    "objectId": "g75387addb7_1_5",  # The Slide ID 
+                    "pageProperties": {
+                        "pageBackgroundFill": {
+                            "stretchedPictureFill": {
+                                "contentUrl": "https://images.unsplash.com/photo-1533907650686-70576141c030?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"   # URL of the new background image
+                            }
+                        }   
+                    },
+                    "fields": "pageBackgroundFill"
                 }
             },
-
-            # Insert text into the box, using the supplied element ID.
-            {
-                'insertText': {
-                    'objectId': element_id,
-                    'insertionIndex': 0,
-                    'text': 'Riley is an awesome coder!'
+            {   # Replaces all instances of this text
+                "replaceAllText": {
+                    "containsText": {
+                        "text": "%7Bdate%7D", # Text to replace
+                        "matchCase": False
+                    },
+                    "replaceText": str(today)  # What it should be replaced with
+                }
+            },
+            {  
+                "replaceAllText": {
+                    "containsText": {
+                        "text": "color",  # Text to replace
+                        "matchCase": False
+                    },
+                    "replaceText": "colorHere"  # What it should be replaced with
                 }
             }
-        ]
-    }
+        ] } 
 
-    response = service.presentations().batchUpdate(presentationId="1t5uX0SYD4en6GWQDrQubCKo87wd4ht4yv-Mr87CJ5ZI", body=req_body).execute()
-
+    service.presentations().batchUpdate(presentationId=PRESENTATION_ID, body=req_body).execute()     
